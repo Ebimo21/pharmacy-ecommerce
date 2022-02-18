@@ -22,8 +22,8 @@
                         <div class="col-lg-5 d-none d-lg-block">
                             <div class="navbar-wrap main-menu d-none d-lg-flex">
                                 <ul class="navigation">
-                                    <li class="active"><a href="index-2.html">Home</a></li>
-                                    <li ><a href="about-us.html">About</a></li>
+                                    <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                                    <li ><a href="{{ route('about') }}">About</a></li>
                                     <li class="menu-item-has-children"><a href="#">Pages</a>
                                         <ul class="sub-menu">
                                             <li><a href="blog.html">Our Blog</a></li>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-lg-2 col-md-3">
                             <div class="logo">
-                                <a href="index-2.html"><img src="{{ asset('') }}frontend/img/logo/logo.png" alt=""></a>
+                                <a href="index-2.html"><img src="{{ asset('frontend/img/logo/logo.png') }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-9">
@@ -50,9 +50,18 @@
                                             <input type="text" placeholder="Search fre Medicines">
                                         </form>
                                     </li>
+                                    @if (Route::has('login'))
+                                    @auth
                                     <li class="header-user d-none d-md-block">
-                                        <a href="contact.html"><i class="far fa-user"></i></a>
+                                        <a href="{{ route('dashboard') }}"><i class="far fa-user"></i></a>
                                     </li>
+                                    @else
+                                    <li class="header-user d-none d-md-block">
+                                    <a href="{{ route('login') }}"><i class="far fa-user"></i></a>
+                                    </li>
+                                    @endauth
+                                    @endif
+                                    
                                     <li class="header-shop-cart d-none d-md-flex">
                                         <a href="#">
                                             <img src="{{ asset('') }}frontend/img/icon/shape-img.png" alt="">

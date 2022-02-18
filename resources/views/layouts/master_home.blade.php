@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
     
-<head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Crestor - Pharmacy & Online Medical Store</title>
@@ -26,12 +26,13 @@
         <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     </head>
+
     <body>
 
         <!-- Preloader -->
-        <div id="preloader">
-            <img src="{{ asset('') }}frontend/img/logo/preloader.gif" alt="">
-        </div>
+        {{-- <div id="preloader">
+            <img src="{{ asset('frontend/img/logo/preloader.gif') }}" alt="">
+        </div> --}}
         <!-- Preloader-end -->
 
 		<!-- Scroll-top -->
@@ -50,11 +51,7 @@
 
         
         
-        <!-- slider-area -->
-
-        @include('layouts.body.slider')
         
-        <!-- slider-area-end-->
 
 
 
@@ -63,6 +60,7 @@
 
 
             @yield('home_content');
+            @yield('about_content');
 
 
         </main>

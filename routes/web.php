@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\frontend\mainController;
+use App\Http\Controllers\Admin\adminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [adminController::class, 'index'])->name('dashboard');
 
-Route::get('/home', function(){
-    return view('home');
-});
+Route::get('/', [mainController::class, 'index'])->name('home');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/popular', [adminController::class, 'popular'])->name('dashboard.popular');
+Route::middleware(['auth:sanctum', 'verified'])->post('/popular/add', [adminController::class, 'addPop'])->name('store.popular');
+Route::middleware(['auth:sanctum', 'verified'])->get('/popular/edit/{id}', [adminController::class, 'edit']);
+
+
+Route::get('/about', [mainController::class, 'about'])->name('about');
+

@@ -1,8 +1,14 @@
 @extends('layouts.master_home')
 
+
+
 @section('home_content')
 
+<!-- slider-area -->
 
+@include('layouts.body.slider')
+        
+<!-- slider-area-end-->
 
 <!-- Features-area -->
 <section class="features-area features-bg pt-90 pb-60">
@@ -66,73 +72,31 @@
             </div>
         </div>
     </div>
+
+    
     <div class="container">
         <div class="row category-active mb-70">
+
+            @foreach ($categories as $category)
             <div class="col">
                 <div class="category-item">
                     <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_01.png" alt="">
-                        <span class="content">Health & Partein</span>
+                        <img src="{{ $category->category_image }}" alt="">
+                        <span class="content">{{  $category->category }}</span>
                     </a>
                 </div>
             </div>
-            <div class="col">
-                <div class="category-item">
-                    <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_02.png" alt="">
-                        <span class="content">Sesual Well</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="category-item">
-                    <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_03.png" alt="">
-                        <span class="content">Health & Partein</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="category-item">
-                    <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_04.png" alt="">
-                        <span class="content">Vitamin C Tablet</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="category-item">
-                    <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_05.png" alt="">
-                        <span class="content">Health & Partein</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="category-item">
-                    <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_06.png" alt="">
-                        <span class="content">Medicinal Kit</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="category-item">
-                    <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_07.png" alt="">
-                        <span class="content">Sanitary Napkin</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="category-item">
-                    <a href="shop.html">
-                        <img src="{{ asset('') }}frontend/img/products/categories_08.png" alt="">
-                        <span class="content">Health & Partein</span>
-                    </a>
-                </div>
-            </div>
+
+            @endforeach
+            
+
+
+            
         </div>
+
+
+
+
         <div class="row shop-active">
             <div class="col">
                 <div class="shop-item mb-60">
