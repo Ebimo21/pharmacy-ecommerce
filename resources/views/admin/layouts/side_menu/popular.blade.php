@@ -35,6 +35,7 @@
                                 <th scope="col">id</th>
                                 <th scope="col">title</th>
                                 <th scope="col">create at</th>
+                                <th scope="col">image</th>
                                 <th scope="col">updated at</th>
                                 <th scope="col">Action</th>
                                 </tr>
@@ -48,11 +49,12 @@
                                     <th scope="row">1</th>
                                     <td>{{ $items->user_id }}</td>
                                     <td>{{ $items->title }}</td>
-                                    <td>{{ $items->create_at }}</td>
-                                    <td>{{ $items->updated_at }}</td>
+                                    <td>{{ $items->created_at->diffForHumans() }}</td>
+                                    <td>{{ $items->image }}</td>
+                                    <td>{{ $items->updated_at->diffForHumans() }}</td>
                                     <td> 
                                         <a href="{{ url('popular/edit/'.$items->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ url('popular/delete/'.$items->id) }}" class="btn btn-danger">Danger</a>
+                                        <a href="{{ url('delete/popular/'.$items->id) }}" class="btn btn-danger">Danger</a>
                                     </td>
 
                                 </tr>
@@ -62,6 +64,8 @@
                             
                             </tbody>
                         </table>
+
+                        {{-- {{ $items-links() }} --}}
                     </div>
                 </div>
             </div>
@@ -82,6 +86,12 @@
                                 <div class="mb-3">
                                     <label class="form-label">Item Title <span class="text-danger">*</span></label>
                                     <input name="title" id="name" type="text" class="form-control" placeholder="First Name :">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label class="form-label">Item Image <span class="text-danger">*</span></label>
+                                    <input name="image" id="name" type="file" class="form-control" >
                                 </div>
                             </div><!--end col-->
                             

@@ -12,6 +12,7 @@ class popular_item extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'created_at'
         // 'item_image',
 
         

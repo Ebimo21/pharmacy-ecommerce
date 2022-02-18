@@ -27,6 +27,8 @@ Route::get('/', [mainController::class, 'index'])->name('home');
 Route::middleware(['auth:sanctum', 'verified'])->get('/popular', [adminController::class, 'popular'])->name('dashboard.popular');
 Route::middleware(['auth:sanctum', 'verified'])->post('/popular/add', [adminController::class, 'addPop'])->name('store.popular');
 Route::middleware(['auth:sanctum', 'verified'])->get('/popular/edit/{id}', [adminController::class, 'edit']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/popular/update/{id}', [adminController::class, 'update']);
+Route::middleware(['auth:sanctum', 'verified'])->get('delete/popular/{id}', [adminController::class, 'delete']);
 
 
 Route::get('/about', [mainController::class, 'about'])->name('about');

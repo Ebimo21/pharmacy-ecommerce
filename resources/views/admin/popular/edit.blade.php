@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="p-4">
-                    <form action="{{ route('store.popular') }}" method="post" >
+                    <form action="{{ url('popular/update/'.$item->id) }}" method="post" >
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
