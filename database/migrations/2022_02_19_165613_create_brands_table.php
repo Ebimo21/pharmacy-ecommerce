@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePopularItemsTable extends Migration
+class CreateBrandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePopularItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('popular_items', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('title');
-            $table->string('image');
-            // $table->string('created_at');
+            $table->string('brand_name');
+            $table->string('brand_slug');
+            $table->string('brand_image');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreatePopularItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('popular_items');
+        Schema::dropIfExists('brands');
     }
 }

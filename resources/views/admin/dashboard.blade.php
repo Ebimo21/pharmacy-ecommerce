@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin_master_home')
 
-@section('main_dashboard')
+@section('content')
 
 <div class="container-fluid">
     <div class="layout-specing">

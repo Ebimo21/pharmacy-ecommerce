@@ -1,7 +1,7 @@
 
 @extends('admin.layouts.admin_master_home')
 
-@section('popular_content')
+@section('content')
 
 <div class="container-fluids">
     
@@ -32,29 +32,41 @@
                             <thead>
                                 <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">id</th>
                                 <th scope="col">title</th>
-                                <th scope="col">create at</th>
                                 <th scope="col">image</th>
+                                <th scope="col">create at</th>
                                 <th scope="col">updated at</th>
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                                <?php
+                                $sn=1; 
+                                ?>
                                 @foreach ($item as $items )
                                 
                                 
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>{{ $items->user_id }}</td>
+                                    <th scope="row">{{ $sn++ }}</th>
                                     <td>{{ $items->title }}</td>
+                                    <td>
+                                    <img src="{{ asset('admin/assets/images/uploads/'.$items->image) }}" height="40px" width="70px" />   
+                                    </td>
                                     <td>{{ $items->created_at->diffForHumans() }}</td>
-                                    <td>{{ $items->image }}</td>
-                                    <td>{{ $items->updated_at->diffForHumans() }}</td>
+                                    <td>
+                                        @if($items->updated_at == Null)
+                                        <span class="text-danger"><b>N/A<b></span>
+                                        @else
+                                        {{ $items->updated_at->diffForHumans() }}</td>
+                                        @endif
                                     <td> 
-                                        <a href="{{ url('popular/edit/'.$items->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ url('delete/popular/'.$items->id) }}" class="btn btn-danger">Danger</a>
+                                        <a href="{{ url('popular/edit/'.$items->id) }}" class="btn btn-info">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="{{ url('delete/popular/'.$items->id) }}" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
                                     </td>
 
                                 </tr>
@@ -79,27 +91,36 @@
                 </div>
 
                 <div class="p-4">
-                    <form action="{{ route('store.popular') }}" method="post" >
+                    <form action="{{ route('store.popular') }}" method="post" enctype="multipart/form-data" >
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Item Title <span class="text-danger">*</span></label>
+                                    <br />
+                                    @error('title')
+                            <span class="text-danger"> {{ $message }} </span>
+
+                            @enderror
                                     <input name="title" id="name" type="text" class="form-control" placeholder="First Name :">
                                 </div>
+
+                                
 
 
                                 <div class="mb-3">
                                     <label class="form-label">Item Image <span class="text-danger">*</span></label>
+                                    <br />
+                                    @error('image')
+                            <span class="text-danger"> {{ $message }} </span>
+
+                            @enderror
                                     <input name="image" id="name" type="file" class="form-control" >
                                 </div>
                             </div><!--end col-->
                             
 
-                            @error('title')
-                            <span> {{ $message }}
-
-                            @enderror
+                            
                             
                         <div class="row">
                             <div class="col-sm-12">

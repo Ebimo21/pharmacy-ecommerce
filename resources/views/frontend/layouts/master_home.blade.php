@@ -45,7 +45,7 @@
 
         <!-- header-area -->
         
-        @include('layouts.body.header')
+        @include('frontend.layouts.body.header')
         
         <!-- header-area-end -->
 
@@ -59,15 +59,14 @@
         <main>
 
 
-            @yield('home_content');
-            @yield('about_content');
+            @yield('content');
 
 
         </main>
         <!-- main-area-end -->
 
         <!-- footer-area -->
-        @include('layouts.body.footer')
+        @include('frontend.layouts.body.footer')
         <!-- footer-area-end -->
 
 

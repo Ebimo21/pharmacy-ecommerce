@@ -1,12 +1,12 @@
-@extends('layouts.master_home')
+@extends('frontend.layouts.master_home')
 
 
 
-@section('home_content')
+@section('content')
 
 <!-- slider-area -->
 
-@include('layouts.body.slider')
+@include('frontend.layouts.body.slider')
         
 <!-- slider-area-end-->
 
@@ -77,12 +77,12 @@
     <div class="container">
         <div class="row category-active mb-70">
 
-            @foreach ($categories as $category)
+            @foreach ($item as $items)
             <div class="col">
                 <div class="category-item">
                     <a href="shop.html">
-                        <img src="{{ $category->category_image }}" alt="">
-                        <span class="content">{{  $category->category }}</span>
+                        <img src="{{ 'admin/assets/images/uploads/'.$items->image }}" alt="">
+                        <span class="content">{{  $items->title }}</span>
                     </a>
                 </div>
             </div>

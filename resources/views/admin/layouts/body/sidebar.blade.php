@@ -14,7 +14,16 @@
                 <a href="javascript:void(0)"><i class="uil uil-file me-2 d-inline-block"></i>Categories</a>
                 <div class="sidebar-submenu">
                     <ul>
-                        <li><a href="faqs.html">Premium</a></li>
+                        <li><a href="{{ route('all.category') }}">All Categories</a></li>
+                        
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
+                <a href="javascript:void(0)"><i class="uil uil-file me-2 d-inline-block"></i>Popular</a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li><a href="#">Brands</a></li>
                         <li><a href="{{ asset('/popular') }}">Popular</a></li>
                         <li><a href="invoice-list.html">Invoice List</a></li>
                         <li><a href="invoice.html">Invoice</a></li>
@@ -22,6 +31,17 @@
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="error.html">404 !</a></li>
                         <li><a href="blank-page.html">Blank Page</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="sidebar-dropdown">
+                <a href="javascript:void(0)"><i class="uil uil-file me-2 d-inline-block"></i>Brands</a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li><a href="{{ route('all.brand') }}">All Brands</a></li>
+                        <li><a href="#">Add Brands</a></li>
+                       
                     </ul>
                 </div>
             </li>

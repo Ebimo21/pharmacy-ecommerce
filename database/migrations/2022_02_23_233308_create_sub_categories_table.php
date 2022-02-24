@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePopularItemsTable extends Migration
+class CreateSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePopularItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('popular_items', function (Blueprint $table) {
+        Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('title');
-            $table->string('image');
-            // $table->string('created_at');
+            $table->string('category_id');
+            $table->string('subCategory_id');
+            $table->string('subCategory_name');
+            $table->string('subCategory_slug');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePopularItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('popular_items');
+        Schema::dropIfExists('sub_categories');
     }
 }

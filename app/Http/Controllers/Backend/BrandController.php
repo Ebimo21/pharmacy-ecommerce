@@ -1,40 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Admin\adminController;
-use App\Models\popular_item;
-
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Carbon;
 
-class adminController extends Controller
+use App\Models\Brand;
+
+class BrandController extends Controller
 {
     //
-    public function index(){
 
-        return view('admin.dashboard');
+    public function BrandView(){
+
+        $brands = Brand::oldest()->get();
+
+        return view('admin.sidemenu.brands.brand_view', compact('brands'));
+
     }
 
-    public function popular(){
-        $item = popular_item::oldest()->paginate(5);
+    public function addBrand(Request $request){
 
-
-        return view('admin.sidemenu.popular.popular', compact('item'));
-    }
-
-    public function addPop(Request $request){
         $validatedData = $request->validate([
-            'title' => 'required',
+            'brand_name' => 'required',
             'image' => 'required',
-            
             
         ]);
 
-        $image = $request->file('image');
+        $image = $request->file('brand_image');
         $name_gen = hexdec(uniqid());
         $img_ext = strtolower($image->getClientOriginalExtension());
         $img_name = $name_gen.'.'.$img_ext;
@@ -42,31 +37,34 @@ class adminController extends Controller
         $last_image = $up_location.$img_name;
         $image->move($up_location, $img_name);
 
-        popular_item::insert([
-            'user_id' =>Auth::user()->id,
-            'title' => $request->title,
+        brand::insert([
+            // 'user_id' =>Auth::user()->id,
+            'brand_name' => $request->brand_name,
+            'brand_slug'=> $request->brand_name,
+            'brand_image'=> $img_name,
             'created_at'=> Carbon::now(),
-            'image' => $img_name,
+            
         ]);
 
         return Redirect()->back()->with('success', 'Category inserted successfully');
+
     }
 
 
-    public function edit($id){
-        $item = popular_item::find($id);
+    public function editBrand($id){
+        $brands = brand::find($id);
         // $item = popular_item::all();
 
 
-        return view('admin.sidemenu.popular.edit', compact('item'));
+        return view('admin.sidemenu.brands.edit-brand', compact('brands'));
     }
    
    
-    public function update(Request $request, $id){
+    public function updateBrand(Request $request, $id){
 
         $validatedData = $request->validate([
             'title' => 'required',
-            
+            'image' => 'required',
             
         ]);
 
@@ -80,7 +78,7 @@ class adminController extends Controller
         $img_ext = strtolower($image->getClientOriginalExtension());
         $img_name = $name_gen.'.'.$img_ext;
         $up_location = "admin/assets/images/uploads/";
-        // $last_image = $up_location.$img_name;
+        $last_image = $up_location.$img_name;
         $image->move($up_location, $img_name);
 
 
@@ -88,19 +86,19 @@ class adminController extends Controller
         unlink($up_location.$old_image);
 
 
-        popular_item::find($id)->update([
+        brand::find($id)->update([
             'title' => $request->title,
             'image' => $img_name,
         ]);
 
         // return Redirect()->back()->with('success', 'Category inserted successfully');
-        return Redirect('/popular')->with('success', 'Category updated successfully');
+        return Redirect()->back()->with('success', 'Category updated successfully');
 
 
         }
         else{
 
-            popular_item::find($id)->update([
+            brand::find($id)->update([
                 'title' => $request->title,
             ]);
     
@@ -115,22 +113,17 @@ class adminController extends Controller
         // return view('admin.popular.edit', compact('item'));
     }
 
-    public function delete($id){
+    public function deleteBrand($id){
 
 
-        $deletePopular = popular_item::find($id);
-        $title = $deletePopular->title;
-        $deleteImage = $deletePopular->image;
+        $deleteBrand = brand::find($id);
+        $deleteImage = $deleteBrand->brand_image;
         $up_location = "admin/assets/images/uploads/";
 
         unlink($up_location.$deleteImage);
-        $deletePopular->delete();
+        $deleteBrand->delete();
 
-
-       
-        return Redirect()->back()->with('success', $title.' '. 'Category deleted successfully');
+        return Redirect()->back()->with('success', 'Category deleted successfully del');
 
     }
-
-
 }

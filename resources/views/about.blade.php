@@ -1,6 +1,6 @@
-@extends('layouts.master_home')
+@extends('frontend.layouts.master_home')
 
-@section('about_content')
+@section('content')
     
             <!-- breadcrumb-area -->
             <div class="breadcrumb-area">
