@@ -15,9 +15,9 @@ class CreatePopularItemsTable extends Migration
     {
         Schema::create('popular_items', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('title');
-            $table->string('image');
+            $table->string('user_id',6);
+            $table->string('title',6);
+            $table->string('image',6);
             // $table->string('created_at');
             $table->timestamps();
         });
