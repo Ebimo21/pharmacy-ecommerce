@@ -17,7 +17,7 @@ class BrandController extends Controller
 
         $brands = Brand::oldest()->get();
 
-        return view('admin.sidemenu.brands.brand_view', compact('brands'));
+        return view('admin.sidemenu.Brands.brand_view', compact('brands'));
 
     }
 
